@@ -1,1 +1,14 @@
-Here will be a description.
+S&P500 is a free-float, capitalisation-weighted index of the top 500
+publicly listed stocks in the US. The data has been recorded since 1870.
+
+This data set contains:
+	-Date
+	-SP500
+	-Dividend
+	-Earnings
+	-Consumer Price Index (CPI)
+	-Long Interest Rate
+	-Real Price
+	-Real Dividend
+	-Real Earnings
+	-PE10
