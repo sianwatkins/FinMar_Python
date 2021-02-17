@@ -12,3 +12,17 @@ This data set contains:
 	-Real Dividend
 	-Real Earnings
 	-PE10
+
+The results' currency in this data set is measured in $USD.
+
+Dividend rates are measured as an actual dollar amount and not %.
+This is the amount per share an investor receives when dividend is paid.
+
+Earnings is a company's net profits divided by the number of common 
+shares it has outstanding.
+
+Long interest rate is the interest rate the shares offer.
+
+PE10 is a valuation measure that uses real per-share earnings over 10yrs.
+Cyclically adjusted price-to-earnings ratio.
+Equities valuation measure that uses real per share earnings.
