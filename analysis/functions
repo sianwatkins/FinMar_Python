@@ -19,4 +19,11 @@ def above_800(SP500):
     abv800.show()
 
 
-above_800(SP500)
+# above_800(SP500)
+
+def date_recognition(SP500):
+    SP500['Date'] = pd.to_datetime(SP500['Date'], format='%Y/%m/%d')
+    print(SP500)
+
+
+date_recognition(SP500)
