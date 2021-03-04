@@ -1,0 +1,22 @@
+import pandas as pd
+import plotly.express as px
+
+SP500 = pd.read_csv('C:\\Users\\siane\\OneDrive\\Documents\\FinMar_Python\\data_set\\SP500_data.csv')
+
+
+def above_800(SP500):
+    growth = SP500[SP500["SP500"] > 800]
+    del growth["Dividend"]
+    del growth["Earnings"]
+    del growth["Consumer Price Index"]
+    del growth["Long Interest Rate"]
+    del growth["Real Price"]
+    del growth["Real Dividend"]
+    del growth["Real Earnings"]
+    del growth["PE10"]
+    print(growth)
+    abv800 = px.scatter(growth, x="Date", y="SP500")
+    abv800.show()
+
+
+above_800(SP500)
