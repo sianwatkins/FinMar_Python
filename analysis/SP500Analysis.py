@@ -4,5 +4,5 @@ SP500 = pd.read_csv('C:\\Users\\siane\\OneDrive\\Documents\\FinMar_Python\\data_
 
 print(SP500)
 
-fig = px.bar(SP500, x="Date", y="SP500")
+fig = px.scatter(SP500, x="Date", y="SP500")
 fig.show()
