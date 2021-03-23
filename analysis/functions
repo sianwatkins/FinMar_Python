@@ -5,6 +5,7 @@ SP500 = pd.read_csv('C:\\Users\\siane\\OneDrive\\Documents\\FinMar_Python\\data_
 
 
 def above_800(SP500):
+    SP500['Date'] = pd.to_datetime(SP500['Date'], format='%Y-%m-%d')
     growth = SP500[SP500["SP500"] > 800]
     del growth["Dividend"]
     del growth["Earnings"]
@@ -14,16 +15,11 @@ def above_800(SP500):
     del growth["Real Dividend"]
     del growth["Real Earnings"]
     del growth["PE10"]
-    print(growth)
-    abv800 = px.scatter(growth, x="Date", y="SP500")
+    #Can change below date
+    mask = (growth['Date'] >= '2015-08-01') & (growth['Date'] <= '2017-12-01')
+    print(growth.loc[mask])
+    abv800 = px.scatter(growth.loc[mask], x="Date", y="SP500")
     abv800.show()
 
 
-# above_800(SP500)
-
-def date_recognition(SP500):
-    SP500['Date'] = pd.to_datetime(SP500['Date'], format='%Y/%m/%d')
-    print(SP500)
-
-
-date_recognition(SP500)
+above_800(SP500)
