@@ -25,10 +25,12 @@ def above_800(SP500):
     print(graph)
     abv800 = px.scatter(graph, x="Date", y="SP500")
     abv800.show()
-
+    #Mean and Standard Deviation
+    print()
+    print("Mean")
+    print(graph[['SP500']].mean())
+    print()
+    print("Standard Deviation")
+    print(graph[['SP500']].std())
 
 above_800(SP500)
-
-
-def mean_sd():
-    print('h')
