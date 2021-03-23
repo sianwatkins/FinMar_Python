@@ -3,7 +3,7 @@ import plotly.express as px
 
 SP500 = pd.read_csv('C:\\Users\\siane\\OneDrive\\Documents\\FinMar_Python\\data_set\\SP500_data.csv')
 
-
+#function for SP500 index greater than 800
 def above_800(SP500):
     SP500['Date'] = pd.to_datetime(SP500['Date'], format='%Y-%m-%d')
     growth = SP500[SP500["SP500"] > 800]
@@ -15,8 +15,11 @@ def above_800(SP500):
     del growth["Real Dividend"]
     del growth["Real Earnings"]
     del growth["PE10"]
+    total_data = px.scatter(growth, x='Date', y='SP500')
+    total_data.show()
     #Can change below date
-    mask = (growth['Date'] >= '2015-08-01') & (growth['Date'] <= '2017-12-01')
+    #Selects date to look at data
+    mask = (growth['Date'] >= '2011-09-01') & (growth['Date'] <= '2017-12-01')
     print(growth.loc[mask])
     abv800 = px.scatter(growth.loc[mask], x="Date", y="SP500")
     abv800.show()
