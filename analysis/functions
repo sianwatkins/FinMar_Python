@@ -4,33 +4,41 @@ import plotly.express as px
 SP500 = pd.read_csv('C:\\Users\\siane\\OneDrive\\Documents\\FinMar_Python\\data_set\\SP500_data.csv')
 
 
-# function for SP500 index greater than 800
-def above_800(SP500):
+# Editing the dataframe
+def editing(SP500):
     SP500['Date'] = pd.to_datetime(SP500['Date'], format='%Y-%m-%d')
-    growth = SP500[SP500["SP500"] > 800]
-    del growth["Dividend"]
-    del growth["Earnings"]
-    del growth["Consumer Price Index"]
-    del growth["Long Interest Rate"]
-    del growth["Real Price"]
-    del growth["Real Dividend"]
-    del growth["Real Earnings"]
-    del growth["PE10"]
-    total_data = px.scatter(growth, x='Date', y='SP500')
-    total_data.show()
-    # Can change below date
+    del SP500["Dividend"]
+    del SP500["Earnings"]
+    del SP500["Consumer Price Index"]
+    del SP500["Long Interest Rate"]
+    del SP500["Real Price"]
+    del SP500["Real Dividend"]
+    del SP500["Real Earnings"]
+    del SP500["PE10"]
+    greater_800 = SP500[SP500["SP500"] > 800]
     # Selects date to look at data
-    mask = (growth['Date'] >= '2011-09-01') & (growth['Date'] <= '2017-12-01')
-    graph = growth.loc[mask]
-    print(graph)
-    abv800 = px.scatter(graph, x="Date", y="SP500")
-    abv800.show()
-    #Mean and Standard Deviation
+    mask = (greater_800['Date'] >= '2011-09-01') & (greater_800['Date'] <= '2017-12-01')
+    newdf = greater_800.loc[mask]
+    print(newdf)
+    return newdf
+
+
+def plotting(editeddf):
+    graph = px.scatter(editeddf, x='Date', y='SP500')
+    graph.show()
+    return graph
+
+
+def mean_sd(editeddf):
     print()
     print("Mean")
-    print(graph[['SP500']].mean())
+    print(editeddf[['SP500']].mean())
     print()
     print("Standard Deviation")
-    print(graph[['SP500']].std())
+    print(editeddf[['SP500']].std())
 
-above_800(SP500)
+
+editeddf = editing(SP500)
+##newdf becomes editeddf as function editing() returned newdf
+graph = plotting(editeddf)
+stats = mean_sd(editeddf)
