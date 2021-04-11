@@ -1,11 +1,10 @@
 import pandas as pd
 import plotly.express as px
 
-
 SP500 = pd.read_csv('C:\\Users\\siane\\OneDrive\\Documents\\FinMar_Python\\data_set\\SP500_data.csv')
 
 
-# Editing the dataframe
+# Editing the dataframe, string to datetime, removing irrelevant columns, only SP500 index above 800 and selecting relevant dates
 def editing(SP500):
     SP500['Date'] = pd.to_datetime(SP500['Date'], format='%Y-%m-%d')
     del SP500["Dividend"]
@@ -24,12 +23,14 @@ def editing(SP500):
     return newdf
 
 
+# Plot of the dataframe derived in above method
 def plotting(editeddf):
     graph = px.scatter(editeddf, x='Date', y='SP500')
     graph.show()
     return graph
 
 
+# Generated general statistics
 def mean_sd(editeddf):
     print()
     print("General Statistics")
@@ -38,6 +39,5 @@ def mean_sd(editeddf):
 
 
 editeddf = editing(SP500)
-##newdf becomes editeddf as function editing() returned newdf
 graph = plotting(editeddf)
 stats = mean_sd(editeddf)
