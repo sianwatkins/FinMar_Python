@@ -2,12 +2,17 @@
 import pandas as pd
 # import plotly.express as px
 import statsmodels.formula.api as sm
-
 from statsmodels.compat import lzip
 import statsmodels.stats.api as sms
 
 SP5002 = pd.read_csv('C:\\Users\\siane\\OneDrive\\Documents\\FinMar_Python\\data_set\\SP500_data.csv')
 
+
+def describe_data(SP5002):
+    index = SP5002["SP500"]
+    include = ['object', 'float', 'int']
+    desc = index.describe(include=include)
+    print(desc)
 
 def regress_bp(SP5002):
     SP500 = SP5002["SP500"]
@@ -26,7 +31,7 @@ def regress_bp(SP5002):
 
 
 def breusch_pagan_test(results):
-    #Breusch-Pagan test for Heteroscedasticity
+    # Breusch-Pagan test for Heteroscedasticity
     test = sms.het_breuschpagan(results.resid, results.model.exog)
     print("")
     names = ['Breusch Pagan Statistics', 'p-value',
@@ -36,8 +41,9 @@ def breusch_pagan_test(results):
     print(bp_results)
     return bp_results
 
+
 def whites_test(results):
-    #White's Test for Heteroscedasticity
+    # White's Test for Heteroscedasticity
     test = sms.het_white(results.resid, results.model.exog)
     names = ['White Statistic', 'p-value',
              'f-value', 'f p-value']
@@ -45,6 +51,8 @@ def whites_test(results):
     white_results = pd.DataFrame([names, test])
     print(white_results)
 
-reg = regress_bp(SP5002)
-breusch_pagan_test(reg)
-whites_test(reg)
+
+#describe_data(SP5002)
+#reg = regress_bp(SP5002)
+#breusch_pagan_test(reg)
+#whites_test(reg)
